@@ -295,7 +295,7 @@ function validateStep(step) {
     //   valid = false;
     // }
     if (steps[stepMap].value?.trim() === "") {
-      console.log("value is empty");
+      console.log("value is empty"+steps[stepMap]);
       valid = false;
     }
 
@@ -305,9 +305,11 @@ function validateStep(step) {
     }
 
     if (steps[stepMap].value?.trim() === 'Alege') {
-      console.log("value is 'Alege'");
+      console.log("value is 'Alege'"+steps[stepMap]);
       valid = false;
     }
+
+    console.log(steps[stepMap]);
 
     console.log(steps[stepMap].selectedOptions);
 
@@ -359,6 +361,8 @@ function handleSubmit(event) {
     // event.preventDefault();
     emptyError();
     removeSuccess();
+    removeSuccess(7);
+
     $(window).scrollTop(0);
     return false;
   }
