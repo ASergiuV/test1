@@ -1,6 +1,6 @@
 var slide1Height = $('#step-slide1 .collaborate-form-step').height();
 var slide2Height = $('#step-slide2 .collaborate-form-step').height();
-console.log("versiunea 8");
+console.log("versiunea 9");
 
 console.log(slide1Height);
 console.log(slide2Height);
@@ -507,7 +507,7 @@ function goToPreviousStep() {
             pasAlt.innerHTML = "Pasul 1";
             break;
         case "Pasul 3":
-            getVignetteCategoryPrices(localStorage.getItem('selectedCategory'));
+            // getVignetteCategoryPrices(localStorage.getItem('selectedCategory'));
 
             removeClass(step1, classToChange);
             addClass(step2, classToChange);
