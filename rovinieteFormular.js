@@ -1,6 +1,6 @@
 var slide1Height = $('#step-slide1 .collaborate-form-step').height();
 var slide2Height = $('#step-slide2 .collaborate-form-step').height();
-console.log("versiunea 5");
+console.log("versiunea 6");
 
 console.log(slide1Height);
 console.log(slide2Height);
@@ -54,12 +54,12 @@ function removeRadiochildrenOnce(parentId) {
     }
     const parent = document.getElementById(parentId);
     // var counter = 0;
-    console.log(parent);
+    // console.log(parent);
 
     // parent.innerHTML = "";
 
     for (const row of [...parent.children]) {
-        console.log(row);
+        // console.log(row);
 
         if (row.innerHTML.includes("radio-button-label-2")) {//testRow.textContent === "rov-row "
             parent.removeChild(row);
@@ -258,7 +258,7 @@ function addCategoriesRow() {
 function addPrices() {
     const parent = document.getElementById('price-table');
     // var counter = 0;
-    console.log(parent);
+    // console.log(parent);
 
     // parent.innerHTML = "";
     // for (let element of parent.querySelector('.w-clearfix')) {
@@ -452,7 +452,6 @@ function handleSubmit(event) {
 
     queryString.delete("_redirect");
     // queryString.delete("owner");
-
     //   localStorage.setItem("discount", queryString.get("decontare"));
     //   localStorage.setItem("availability", queryString.get("availability"));
 
@@ -590,7 +589,9 @@ function fadeOut(element) {
 
 function postVignetteAllData(type) {
     var request = new XMLHttpRequest();
-    request.open('POST', `${base_url}/vignette-policies/all-data?${localStorage.getItem("queryString")}`, true);
+    const qs = localStorage.getItem("queryString");
+
+    request.open('POST', `${base_url}/vignette-policies/all-data?${qs}`, true);
     request.setRequestHeader('Authorization', `Bearer ${token}`);
     request.setRequestHeader('Content-Type', 'application/json');
     request.onload = function () {
@@ -747,9 +748,9 @@ window.onload = function () {
         //   postVignetteAllData(localStorage.getItem("selectedOfferId"), "card");
         // }
         if (hasClass(document.getElementById("tbiSelect"), "w--current")) {
-            postVignetteAllData(localStorage.getItem("selectedOfferId"), "rate");
+            postVignetteAllData("rate");
         } else {
-            postVignetteAllData(localStorage.getItem("selectedOfferId"), "card");
+            postVignetteAllData("card");
         }
         // document.getElementById("modal").style.display = 'none';
     });
@@ -760,9 +761,9 @@ window.onload = function () {
         //   postVignetteAllData(localStorage.getItem("selectedOfferId"), "card");
         // }
         if (hasClass(document.getElementById("tbiSelect"), "w--current")) {
-            postVignetteAllData(localStorage.getItem("selectedOfferId"), "rate");
+            postVignetteAllData("rate");
         } else {
-            postVignetteAllData(localStorage.getItem("selectedOfferId"), "card");
+            postVignetteAllData("card");
         }
         // document.getElementById("modal").style.display = 'none';
     });
