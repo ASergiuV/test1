@@ -1,6 +1,6 @@
 var slide1Height = $('#step-slide1 .collaborate-form-step').height();
 var slide2Height = $('#step-slide2 .collaborate-form-step').height();
-console.log("versiunea 20");
+console.log("versiunea 21");
 
 console.log(slide1Height);
 console.log(slide2Height);
@@ -256,17 +256,17 @@ function addCategoriesRow() {
 
 function removeSuccess(seconds = 0) {
     setTimeout(function () {
-      container = document.getElementById('successMessageSubmit');
-      if (container == null) return; // abort if element isn't available
-  
-      container.style.display = 'none';
-  
-      form = document.getElementById('wf-form-rovinieta-detalii');
-      form.style.display = 'block';
-  
-  
+        container = document.getElementById('successMessageSubmit');
+        if (container == null) return; // abort if element isn't available
+
+        container.style.display = 'none';
+
+        form = document.getElementById('wf-form-rovinieta-detalii');
+        form.style.display = 'block';
+
+
     }, seconds * 1000);
-  }
+}
 
 function addPrices() {
     const parent = document.getElementById('rovList');//price-table
@@ -613,6 +613,7 @@ function goToNextStep(event) {
                     background: "hsl(350 100% 66.5%)",
                     color: "hsl(350 100% 13.5%)",
                 });
+                document.getElementById('pasText').innerHTML = "Pasul 3";
                 document.getElementById('prevButton').click();
                 return false;
             }
