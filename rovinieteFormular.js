@@ -1,6 +1,6 @@
 var slide1Height = $('#step-slide1 .collaborate-form-step').height();
 var slide2Height = $('#step-slide2 .collaborate-form-step').height();
-console.log("versiunea 21");
+console.log("versiunea 22");
 
 console.log(slide1Height);
 console.log(slide2Height);
@@ -470,35 +470,36 @@ function handleSubmit(event) {
 
     localStorage.setItem("querystring2", queryString.toString());
     const qs = localStorage.getItem("querystring2");
+    postVignetteAllData("card", qs);
 
-    document.getElementById("paymentButton").addEventListener('click', function (event) {
-        // if (hasClass(document.getElementById("mobilpaySelect"), "w--current")) {
-        //   console.log("CARD!");
-        //   postVignetteAllData(localStorage.getItem("selectedOfferId"), "card");
-        // }
-        console.log(qs)
+    // document.getElementById("paymentButton").addEventListener('click', function (event) {
+    //     // if (hasClass(document.getElementById("mobilpaySelect"), "w--current")) {
+    //     //   console.log("CARD!");
+    //     //   postVignetteAllData(localStorage.getItem("selectedOfferId"), "card");
+    //     // }
+    //     console.log(qs)
 
-        if (hasClass(document.getElementById("tbiSelect"), "w--current")) {
-            postVignetteAllData("rate", qs);
-        } else {
-            postVignetteAllData("card", qs);
-        }
-        // document.getElementById("modal").style.display = 'none';
-    });
+    //     if (hasClass(document.getElementById("tbiSelect"), "w--current")) {
+    //         postVignetteAllData("rate", qs);
+    //     } else {
+    //         postVignetteAllData("card", qs);
+    //     }
+    //     // document.getElementById("modal").style.display = 'none';
+    // });
 
-    document.getElementById("paymentButtonCard").addEventListener('click', function (event) {
-        // if (hasClass(document.getElementById("mobilpaySelect"), "w--current")) {
-        //   console.log("CARD!");
-        //   postVignetteAllData(localStorage.getItem("selectedOfferId"), "card");
-        // }
-        console.log(qs)
-        if (hasClass(document.getElementById("tbiSelect"), "w--current")) {
-            postVignetteAllData("rate", qs);
-        } else {
-            postVignetteAllData("card", qs);
-        }
-        // document.getElementById("modal").style.display = 'none';
-    });
+    // document.getElementById("paymentButtonCard").addEventListener('click', function (event) {
+    //     // if (hasClass(document.getElementById("mobilpaySelect"), "w--current")) {
+    //     //   console.log("CARD!");
+    //     //   postVignetteAllData(localStorage.getItem("selectedOfferId"), "card");
+    //     // }
+    //     console.log(qs)
+    //     if (hasClass(document.getElementById("tbiSelect"), "w--current")) {
+    //         postVignetteAllData("rate", qs);
+    //     } else {
+    //         postVignetteAllData("card", qs);
+    //     }
+    //     // document.getElementById("modal").style.display = 'none';
+    // });
 
     // window.location.href = '/asigurare-rca-oferte-disponibile';
 
@@ -788,15 +789,15 @@ window.onload = function () {
     const prev = document.getElementById('prevButton');
     prev.addEventListener('click', goToPreviousStep);
 
-    document.getElementById("close-modal").addEventListener('click', function (event) {
-        // fade(document.getElementById("modal"));
-        // $("#modal").fadeOut();
-        // document.getElementById("modal").style.display = "none";
-        // document.getElementById("modal").style.opacity = 0;
-        fadeOut(document.getElementById("modal"));
+    // document.getElementById("close-modal").addEventListener('click', function (event) {
+    //     // fade(document.getElementById("modal"));
+    //     // $("#modal").fadeOut();
+    //     // document.getElementById("modal").style.display = "none";
+    //     // document.getElementById("modal").style.opacity = 0;
+    //     fadeOut(document.getElementById("modal"));
 
-    });
+    // });
 
-    document.getElementById("modal").style.transition = "opacity 0.5s ease-in-out;";
+    // document.getElementById("modal").style.transition = "opacity 0.5s ease-in-out;";
 }
 
