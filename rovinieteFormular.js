@@ -1,6 +1,6 @@
 var slide1Height = $('#step-slide1 .collaborate-form-step').height();
 var slide2Height = $('#step-slide2 .collaborate-form-step').height();
-console.log("versiunea 1");
+console.log("versiunea 2");
 
 console.log(slide1Height);
 console.log(slide2Height);
@@ -439,7 +439,7 @@ function handleSubmit(event) {
     event.preventDefault();
     const license = localStorage.getItem('license-number');
     const availability = localStorage.getItem('selectedAvailability');
-    const category = localStorage.getItem('selectedCategory');
+    // const category = localStorage.getItem('selectedCategory');
 
     const data = new FormData(event.target);
 
@@ -474,6 +474,56 @@ function removeClass(ele, cls) {
     if (hasClass(ele, cls)) {
         var reg = new RegExp('(\\s|^)' + cls + '(\\s|$)');
         ele.className = ele.className.replace(reg, ' ');
+    }
+}
+
+function goToPreviousStep() {
+    const classToChange = "step-active";
+    const pas = document.getElementById('pasText');
+    const pasAlt = document.getElementById('pasTextAlt');
+
+    const step1 = document.getElementById('step1');
+    const step2 = document.getElementById('step2');
+    const step3 = document.getElementById('step3');
+
+    const step1alt = document.getElementById('step1alt');
+    const step2alt = document.getElementById('step2alt');
+    const step3alt = document.getElementById('step3alt');
+
+
+    switch (pas.innerHTML) {
+        case "Pasul 1":
+            break;
+        case "Pasul 2":
+            addClass(step1, classToChange);
+            removeClass(step2, classToChange);
+            removeClass(step3, classToChange);
+
+            addClass(step1alt, classToChange);
+            removeClass(step2alt, classToChange);
+            removeClass(step3alt, classToChange);
+
+            pas.innerHTML = "Pasul 1";
+            pasAlt.innerHTML = "Pasul 1";
+            break;
+        case "Pasul 3":
+            getVignetteCategoryPrices(localStorage.getItem('selectedCategory'));
+
+            removeClass(step1, classToChange);
+            addClass(step2, classToChange);
+            removeClass(step3, classToChange);
+
+
+            removeClass(step1alt, classToChange);
+            addClass(step2alt, classToChange);
+            removeClass(step3alt, classToChange);
+
+            pas.innerHTML = "Pasul 2";
+            pasAlt.innerHTML = "Pasul 2";
+            $(".next.roviniete").css('top', "-" + slide2Height + "px");
+
+            break;
+
     }
 }
 
@@ -635,6 +685,10 @@ function getTbi(tokn) {
 
 }
 
+function addCategoryToLocalStorage(event) {
+    localStorage.setItem('selectedCategory', event.target.value);
+}
+
 window.onload = function () {
 
     initToast();
@@ -646,6 +700,12 @@ window.onload = function () {
 
     const form = document.getElementById('wf-form-rovinieta-detalii');
     form.addEventListener('submit', handleSubmit);
+
+    const radio1 = document.getElementById('1');
+    radio1.addEventListener('click', addCategoryToLocalStorage);
+
+    const radio2 = document.getElementById('2');
+    radio2.addEventListener('click', addCategoryToLocalStorage);
 
     const start_date = document.getElementById('start_date');
     // start_date.disabled = true;
