@@ -1,6 +1,6 @@
 var slide1Height = $('#step-slide1 .collaborate-form-step').height();
 var slide2Height = $('#step-slide2 .collaborate-form-step').height();
-console.log("versiunea 17");
+console.log("versiunea 19");
 
 console.log(slide1Height);
 console.log(slide2Height);
@@ -254,6 +254,19 @@ function addCategoriesRow() {
 
 }
 
+function removeSuccess(seconds = 0) {
+    setTimeout(function () {
+      container = document.getElementById('successMessageSubmit');
+      if (container == null) return; // abort if element isn't available
+  
+      container.style.display = 'none';
+  
+      form = document.getElementById('form-details');
+      form.style.display = 'block';
+  
+  
+    }, seconds * 1000);
+  }
 
 function addPrices() {
     const parent = document.getElementById('rovList');//price-table
@@ -488,6 +501,8 @@ function handleSubmit(event) {
     });
 
     // window.location.href = '/asigurare-rca-oferte-disponibile';
+
+    removeSuccess(5);
 }
 
 function hasClass(ele, cls) {
