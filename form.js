@@ -295,7 +295,7 @@ function validateStep(step) {
     //   valid = false;
     // }
     if (steps[stepMap].value?.trim() === "") {
-      console.log("value is empty"+steps[stepMap]);
+      console.log("value is empty" + steps[stepMap]);
       valid = false;
     }
 
@@ -305,7 +305,7 @@ function validateStep(step) {
     }
 
     if (steps[stepMap].value?.trim() === 'Alege') {
-      console.log("value is 'Alege'"+steps[stepMap]);
+      console.log("value is 'Alege'" + steps[stepMap]);
       valid = false;
     }
 
@@ -314,7 +314,7 @@ function validateStep(step) {
     console.log(steps[stepMap].selectedOptions);
 
     if (steps[stepMap].selectedOptions[0]?.outerText?.trim() === 'Alege') {
-      console.log("value is 'Alege'");
+      console.log("value is 'Alege'" + steps[stepMap]);
       valid = false;
     }
 
@@ -337,13 +337,13 @@ function emptyError() {
   });
 }
 
-function removeSuccess(seconds=0){
-  setTimeout(function(){
+function removeSuccess(seconds = 0) {
+  setTimeout(function () {
     container = document.getElementById('successMessageSubmit');
     if (container == null) return; // abort if element isn't available
 
     container.style.display = 'none';
-}, seconds * 1000);
+  }, seconds * 1000);
 }
 
 // catch form response to object
@@ -529,7 +529,7 @@ function goToSecondPage(event) {
       color: "hsl(350 100% 13.5%)",
     });
     document.getElementById('prevButton').click();
-    return;
+    return false;
   }
   const classToChange = "step-active";
   const pas = document.getElementById('pasText');
