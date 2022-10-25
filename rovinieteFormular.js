@@ -1,8 +1,12 @@
 var slide1Height = $('#step-slide1 .collaborate-form-step').height();
 var slide2Height = $('#step-slide2 .collaborate-form-step').height();
+console.log("versiunea 0");
 
 console.log(slide1Height);
 console.log(slide2Height);
+
+const prevButtonHTML = '<div class="previous w-slider-arrow-left" role="button" tabindex="0" aria-controls="w-slider-mask-0" aria-label="previous slide" style="display: none;"><div id="prevButton" class="previous-button">← Back</div></div>';
+const nextButtonHTML = '<div class="next roviniete w-slider-arrow-right" role="button" tabindex="0" aria-controls="w-slider-mask-0" aria-label="next slide" style="top: -468.516px;"><div id="nextButton" class="next-button button">Continua</div></div>';
 
 
 // if($("#step-slide1").is(":visible") == true){
@@ -77,8 +81,8 @@ function getVignetteCategories() {
 
         if (request.status >= 200 && request.status < 400) {
             categories = data.data;
-            removeRadiochildrenOnce('category-table');
-            addCategoriesRow();
+            // removeRadiochildrenOnce('category-table');
+            // addCategoriesRow();
         } else {
             // generateToast({
             //     message: "A avut loc o eroare!",
@@ -114,6 +118,30 @@ function getVignetteCategoryPrices(categoryId) {
     request.send();
 }
 
+function addNextPrevButtonsAsChildOfId(elemId) {
+    const parent = document.getElementById(elemId);
+
+    if (!parent.innerHTML.includes(prevButtonHTML)) {
+        parent.innerHTML += prevButtonHTML;
+    }
+
+    if (!parent.innerHTML.includes(nextButtonHTML)) {
+        parent.innerHTML += nextButtonHTML;
+    }
+}
+
+function removeNextPrevButtonsAsChildOfId(elemId) {
+    const parent = document.getElementById(elemId);
+
+    if (parent.innerHTML.includes(prevButtonHTML)) {
+        parent.innerHTML = parent.innerHTML.replace(prevButtonHTML, '');
+    }
+
+    if (parent.innerHTML.includes(nextButtonHTML)) {
+        parent.innerHTML = parent.innerHTML.replace(nextButtonHTML, '');
+    }
+}
+
 
 function addCategoriesRow() {
     const parent = document.getElementById('category-table');
@@ -130,18 +158,18 @@ function addCategoriesRow() {
     //     }
     // }
 
-    var title = document.createElement('div');
-    title.setAttribute('data-ix', "show-content-onslide");
-    addClass(title, 'form-section-title');
-    title.innerHTML = "Tipul de autovehicul";
+    // var title = document.createElement('div');
+    // title.setAttribute('data-ix', "show-content-onslide");
+    // addClass(title, 'form-section-title');
+    // title.innerHTML = "Tipul de autovehicul";
 
-    parent.appendChild(title);
+    // parent.appendChild(title);
 
-    var paragraph = document.createElement('p');
-    addClass(paragraph, 'paragraph-7');
-    paragraph.innerHTML = "Va rugam selectati tipul de autovehicul pentru care doriti sa achizionati rovinieta.";
+    // var paragraph = document.createElement('p');
+    // addClass(paragraph, 'paragraph-7');
+    // paragraph.innerHTML = "Va rugam selectati tipul de autovehicul pentru care doriti sa achizionati rovinieta.";
 
-    parent.appendChild(paragraph);
+    // parent.appendChild(paragraph);
 
     var row = document.createElement('div');
     addClass(row, 'rov-row');//
@@ -178,7 +206,7 @@ function addCategoriesRow() {
         addClass(categoryDivRadioInput, 'w-form-formradioinput w-form-formradioinput--inputType-custom radio-button-2 align-right w-radio-input');
         if (category.code == "A-Autoturism") {
             addClass(categoryDivRadioInput, 'w--redirected-checked');
-            localStorage.setItem('selectedCategory', '1');
+            localStorage.setItem('selectedCategory', category.id);
         }
 
         var input = document.createElement('input');
@@ -239,12 +267,12 @@ function addPrices() {
     //     }
     // }
 
-    for (const row of [...parent.children]) {
-        console.log(row);
-        if (row.innerHTML.includes("radio-button-label-2")) {//testRow.textContent === "rov-row "
-            parent.removeChild(row);
-        }
-    }
+    // for (const row of [...parent.children]) {
+    //     console.log(row);
+    //     if (row.innerHTML.includes("radio-button-label-2")) {//testRow.textContent === "rov-row "
+    //         parent.removeChild(row);
+    //     }
+    // }
 
     //slide 1 adaugare buton in lista la nivel cu row, trebuie adaugat si pe a doua 
 
@@ -501,57 +529,6 @@ function goToNextStep(event) {
     }
 }
 
-function goToPreviousStep(event) {
-    const classToChange = "step-active";
-    const pas = document.getElementById('pasText');
-    const pasAlt = document.getElementById('pasTextAlt');
-
-    const step1 = document.getElementById('step1');
-    const step2 = document.getElementById('step2');
-    const step3 = document.getElementById('step3');
-
-    const step1alt = document.getElementById('step1alt');
-    const step2alt = document.getElementById('step2alt');
-    const step3alt = document.getElementById('step3alt');
-
-
-    switch (pas.innerHTML) {
-        case "Pasul 1":
-
-            break;
-        case "Pasul 2":
-
-            addClass(step1, classToChange);
-            removeClass(step2, classToChange);
-            removeClass(step3, classToChange);
-
-
-            addClass(step1alt, classToChange);
-            removeClass(step2alt, classToChange);
-            removeClass(step3alt, classToChange);
-
-            pas.innerHTML = "Pasul 1";
-            pasAlt.innerHTML = "Pasul 1";
-            $(".next.roviniete").css('top', "-" + slide1Height + "px");
-
-            break;
-        case "Pasul 3":
-            removeClass(step1, classToChange);
-            addClass(step2, classToChange);
-            removeClass(step3, classToChange);
-
-
-            removeClass(step1alt, classToChange);
-            addClass(step2alt, classToChange);
-            removeClass(step3alt, classToChange);
-
-            pas.innerHTML = "Pasul 2";
-            pasAlt.innerHTML = "Pasul 2";
-            break;
-
-    }
-
-}
 
 function fadeOut(element) {
     element.style.opacity = 1;
