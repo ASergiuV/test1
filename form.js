@@ -248,6 +248,8 @@ request_vehicles_categs.onload = function () {
 
   if (request_vehicles_categs.status >= 200 && request_vehicles_categs.status < 400) {
     set_data_to_dropdown(data.data, 'category', 'id');
+    loadCarMakesBasedOnCategory2(document.getElementById('category'));
+    loadCarModelsBasedOnMake2(document.getElementById('make'));
   } else {
     console.log('error');
   }
@@ -408,6 +410,48 @@ function handleSubmit(event) {
   window.location.href = '/asigurare-rca-oferte-disponibile';
 }
 
+
+function loadCarMakesBasedOnCategory2(elem) {
+  request_vehicles_makes = prepare_request('/vehicles/makes?app_mapped_category_id=' + elem.selectedOptions[0].value);
+
+
+  // vehicles makes calls
+  request_vehicles_makes.onload = function () {
+    // Begin accessing JSON data here
+    var data = JSON.parse(this.response);
+    // console.log(data);
+
+    if (request_vehicles_makes.status >= 200 && request_vehicles_makes.status < 400) {
+      removeSelectOptionsExceptAlege('make');
+      set_data_to_dropdown(data.data, 'make', 'id');
+    } else {
+      console.log('error');
+    }
+  };
+
+  request_vehicles_makes.send();
+}
+
+function loadCarModelsBasedOnMake2(elem) {
+  request_vehicles_models = prepare_request('/vehicles/models?vehicle_make_id=' + elem.selectedOptions[0].value);
+
+  // vehicles models calls
+  request_vehicles_models.onload = function () {
+    // Begin accessing JSON data here
+    var data = JSON.parse(this.response);
+    // console.log(data);
+
+    if (request_vehicles_models.status >= 200 && request_vehicles_models.status < 400) {
+      removeSelectOptionsExceptAlege('model');
+      set_data_to_dropdown(data.data, 'model', 'id');
+    } else {
+      console.log('error');
+    }
+  };
+
+  request_vehicles_models.send();
+
+}
 
 
 function loadCarMakesBasedOnCategory(event) {
