@@ -467,6 +467,8 @@ function loadCarMakesBasedOnCategory(event) {
     if (request_vehicles_makes.status >= 200 && request_vehicles_makes.status < 400) {
       removeSelectOptionsExceptAlege('make');
       set_data_to_dropdown(data.data, 'make', 'id');
+      loadCarModelsBasedOnMake2(document.getElementById('make'));
+
     } else {
       console.log('error');
     }
