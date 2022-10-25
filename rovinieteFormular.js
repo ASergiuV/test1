@@ -1,6 +1,6 @@
 var slide1Height = $('#step-slide1 .collaborate-form-step').height();
 var slide2Height = $('#step-slide2 .collaborate-form-step').height();
-console.log("versiunea 6");
+console.log("versiunea 7");
 
 console.log(slide1Height);
 console.log(slide2Height);
@@ -708,6 +708,8 @@ window.onload = function () {
 
     const radio2 = document.getElementById('2');
     radio2.addEventListener('click', addCategoryToLocalStorage);
+
+    document.getElementById('1').click();
 
     const start_date = document.getElementById('start_date');
     // start_date.disabled = true;
