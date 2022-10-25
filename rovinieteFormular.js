@@ -1,6 +1,6 @@
 var slide1Height = $('#step-slide1 .collaborate-form-step').height();
 var slide2Height = $('#step-slide2 .collaborate-form-step').height();
-console.log("versiunea 9");
+console.log("versiunea 10");
 
 console.log(slide1Height);
 console.log(slide2Height);
@@ -324,16 +324,16 @@ function addPrices() {
 
         var input = document.createElement('input');
         input.setAttribute('type', 'radio');
-        input.setAttribute('name', 'auto-rov');
-        input.setAttribute('data-name', 'auto-rov');
+        input.setAttribute('name', 'availability');
+        input.setAttribute('data-name', 'availability');
         input.setAttribute('style', 'opacity:0;position:absolute;z-index:-1');
         input.setAttribute('value', availability.availability_code);
-        input.setAttribute('id', "auto-rov" + i);
+        input.setAttribute('id', "availability" + i);
 
 
         var span = document.createElement('span');
         addClass(span, 'radio-button-label-2 radio-button-label-3 w-form-label');
-        span.setAttribute('for', "auto-rov" + i);
+        span.setAttribute('for', "availability" + i);
 
 
         var strong = document.createElement('strong');
@@ -455,8 +455,34 @@ function handleSubmit(event) {
     //   localStorage.setItem("discount", queryString.get("decontare"));
     //   localStorage.setItem("availability", queryString.get("availability"));
 
-    localStorage.setItem("querystring", queryString.toString());
-    console.log(localStorage.getItem("querystring"))
+    localStorage.setItem("querystring2", queryString.toString());
+    console.log(localStorage.getItem("querystring2"))
+
+    document.getElementById("paymentButton").addEventListener('click', function (event) {
+        // if (hasClass(document.getElementById("mobilpaySelect"), "w--current")) {
+        //   console.log("CARD!");
+        //   postVignetteAllData(localStorage.getItem("selectedOfferId"), "card");
+        // }
+        if (hasClass(document.getElementById("tbiSelect"), "w--current")) {
+            postVignetteAllData("rate");
+        } else {
+            postVignetteAllData("card");
+        }
+        // document.getElementById("modal").style.display = 'none';
+    });
+
+    document.getElementById("paymentButtonCard").addEventListener('click', function (event) {
+        // if (hasClass(document.getElementById("mobilpaySelect"), "w--current")) {
+        //   console.log("CARD!");
+        //   postVignetteAllData(localStorage.getItem("selectedOfferId"), "card");
+        // }
+        if (hasClass(document.getElementById("tbiSelect"), "w--current")) {
+            postVignetteAllData("rate");
+        } else {
+            postVignetteAllData("card");
+        }
+        // document.getElementById("modal").style.display = 'none';
+    });
 
     // window.location.href = '/asigurare-rca-oferte-disponibile';
 }
@@ -589,7 +615,7 @@ function fadeOut(element) {
 
 function postVignetteAllData(type) {
     var request = new XMLHttpRequest();
-    const qs = localStorage.getItem("queryString");
+    const qs = localStorage.getItem('queryString2');
     console.log(qs);
 
     request.open('POST', `${base_url}/vignette-policies/all-data?${qs}`, true);
@@ -745,31 +771,7 @@ window.onload = function () {
     document.getElementById("modal").style.transition = "opacity 0.5s ease-in-out;";
 
 
-    document.getElementById("paymentButton").addEventListener('click', function (event) {
-        // if (hasClass(document.getElementById("mobilpaySelect"), "w--current")) {
-        //   console.log("CARD!");
-        //   postVignetteAllData(localStorage.getItem("selectedOfferId"), "card");
-        // }
-        if (hasClass(document.getElementById("tbiSelect"), "w--current")) {
-            postVignetteAllData("rate");
-        } else {
-            postVignetteAllData("card");
-        }
-        // document.getElementById("modal").style.display = 'none';
-    });
-
-    document.getElementById("paymentButtonCard").addEventListener('click', function (event) {
-        // if (hasClass(document.getElementById("mobilpaySelect"), "w--current")) {
-        //   console.log("CARD!");
-        //   postVignetteAllData(localStorage.getItem("selectedOfferId"), "card");
-        // }
-        if (hasClass(document.getElementById("tbiSelect"), "w--current")) {
-            postVignetteAllData("rate");
-        } else {
-            postVignetteAllData("card");
-        }
-        // document.getElementById("modal").style.display = 'none';
-    });
+    
 
 }
 
