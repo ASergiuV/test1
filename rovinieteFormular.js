@@ -1,5 +1,5 @@
-var slide1Height= $('#step-slide1 .collaborate-form-step').height();
-var slide2Height= $('#step-slide2 .collaborate-form-step').height();
+var slide1Height = $('#step-slide1 .collaborate-form-step').height();
+var slide2Height = $('#step-slide2 .collaborate-form-step').height();
 
 console.log(slide1Height);
 console.log(slide2Height);
@@ -99,9 +99,9 @@ function addCategoriesRow() {
         console.log(row);
 
         if (row.innerHTML.includes("radio-button-label-2")) {//testRow.textContent === "rov-row "
-          tbody.removeChild(row);
+            parent.removeChild(row);
         }
-      }
+    }
 
     var title = document.createElement('div');
     title.setAttribute('data-ix', "show-content-onslide");
@@ -215,9 +215,11 @@ function addPrices() {
     for (const row of [...parent.children]) {
         console.log(row);
         if (row.innerHTML.includes("radio-button-label-2")) {//testRow.textContent === "rov-row "
-          tbody.removeChild(row);
+            parent.removeChild(row);
         }
-      }
+    }
+
+    //slide 1 adaugare buton in lista la nivel cu row, trebuie adaugat si pe a doua 
 
     parent.removeChild(parent.querySelector('.w-clearfix'));
     //if innerhtml contains radio
@@ -527,9 +529,9 @@ function goToPreviousStep(event) {
 function fadeOut(element) {
     element.style.opacity = 1;
     setTimeout(() => {
-      element.style.opacity = 0;
+        element.style.opacity = 0;
     }, 500 + 20);
-  }
+}
 
 function postVignetteAllData(quotationOfferId, type) {
     var request = new XMLHttpRequest();
@@ -537,98 +539,98 @@ function postVignetteAllData(quotationOfferId, type) {
     request.setRequestHeader('Authorization', `Bearer ${token}`);
     request.setRequestHeader('Content-Type', 'application/json');
     request.onload = function () {
-      var data = JSON.parse(this.response);
-  
-      // console.log("postVignetteAllData");
-  
-      // console.log(data);
-  
-      if (request.status >= 200 && request.status < 400) {
-        if (type === "card") {
-          postMobilpay(data.data.order_id);
+        var data = JSON.parse(this.response);
+
+        // console.log("postVignetteAllData");
+
+        // console.log(data);
+
+        if (request.status >= 200 && request.status < 400) {
+            if (type === "card") {
+                postMobilpay(data.data.order_id);
+            }
+            if (type === "rate") {
+                postTbi(data.data.order_id);
+            }
+        } else {
+            generateToast({
+                message: data.error.pretty_message,
+                background: errorBg,
+                color: errorColor,
+            });
+            console.log('Error fetching offer data: ' + data.error.pretty_message);
         }
-        if (type === "rate") {
-          postTbi(data.data.order_id);
-        }
-      } else {
-        generateToast({
-          message: data.error.pretty_message,
-          background: errorBg,
-          color: errorColor,
-        });
-        console.log('Error fetching offer data: ' + data.error.pretty_message);
-      }
     };
-  
+
     request.send();
-  }
-  
-  function postMobilpay(orderId) {
+}
+
+function postMobilpay(orderId) {
     var request = new XMLHttpRequest();
     request.open('POST', `${base_url}/payu/create?order_id=${orderId}`, true);
     request.setRequestHeader('Authorization', `Bearer ${token}`);
     request.setRequestHeader('Content-Type', 'application/json');
     request.onload = function () {
-      var data = JSON.parse(this.response);
-  
-      // console.log("postMobilpay");
-  
-      // console.log(data);
-  
-      if (request.status >= 200 && request.status < 400) {
-        getMobilpay(data.data.token);
-      } else {
-        generateToast({
-          message: data.error.pretty_message,
-          background: errorBg,
-          color: errorColor,
-        });
-        console.log('Error fetching offer data: ' + data.error.pretty_message);
-      }
+        var data = JSON.parse(this.response);
+
+        // console.log("postMobilpay");
+
+        // console.log(data);
+
+        if (request.status >= 200 && request.status < 400) {
+            getMobilpay(data.data.token);
+        } else {
+            generateToast({
+                message: data.error.pretty_message,
+                background: errorBg,
+                color: errorColor,
+            });
+            console.log('Error fetching offer data: ' + data.error.pretty_message);
+        }
     };
-  
+
     request.send();
-  }
-  
-  function postTbi(orderId, instalments = 4) {
+}
+
+function postTbi(orderId, instalments = 4) {
     var request = new XMLHttpRequest();
     request.open('POST', `${base_url}/tbi/create?order_id=${orderId}&instalments=${instalments}`, true);
     request.setRequestHeader('Authorization', `Bearer ${token}`);
     request.setRequestHeader('Content-Type', 'application/json');
     request.onload = function () {
-      var data = JSON.parse(this.response);
-  
-      // console.log("postTbi");
-  
-      // console.log(data);
-  
-      if (request.status >= 200 && request.status < 400) {
-        getTbi(data.data.token);
-      } else {
-        generateToast({
-          message: data.error.pretty_message,
-          background: errorBg,
-          color: errorColor,
-        });
-        console.log('Error fetching offer data: ' + data.error.pretty_message);
-      }
+        var data = JSON.parse(this.response);
+
+        // console.log("postTbi");
+
+        // console.log(data);
+
+        if (request.status >= 200 && request.status < 400) {
+            getTbi(data.data.token);
+        } else {
+            generateToast({
+                message: data.error.pretty_message,
+                background: errorBg,
+                color: errorColor,
+            });
+            console.log('Error fetching offer data: ' + data.error.pretty_message);
+        }
     };
-  
+
     request.send();
-  }
-  
-  function getMobilpay(tokn) {
-  
+}
+
+function getMobilpay(tokn) {
+
     window.location.href = `${base_url_mobilpay}/payu?token=${tokn}`;
-  
-  }
-  
-  function getTbi(tokn) {
-  
+
+}
+
+function getTbi(tokn) {
+
     window.location.href = `${base_url_mobilpay}/tbi?token=${tokn}`;
-  
-  }
-  
+
+}
+
 window.onload = function () {
 
     // initToast();
@@ -668,37 +670,37 @@ window.onload = function () {
         // document.getElementById("modal").style.display = "none";
         // document.getElementById("modal").style.opacity = 0;
         fadeOut(document.getElementById("modal"));
-    
-      });
-    
-      document.getElementById("modal").style.transition = "opacity 0.5s ease-in-out;";
-    
-    
-      document.getElementById("paymentButton").addEventListener('click', function (event) {
+
+    });
+
+    document.getElementById("modal").style.transition = "opacity 0.5s ease-in-out;";
+
+
+    document.getElementById("paymentButton").addEventListener('click', function (event) {
         // if (hasClass(document.getElementById("mobilpaySelect"), "w--current")) {
         //   console.log("CARD!");
         //   postVignetteAllData(localStorage.getItem("selectedOfferId"), "card");
         // }
         if (hasClass(document.getElementById("tbiSelect"), "w--current")) {
-          postVignetteAllData(localStorage.getItem("selectedOfferId"), "rate");
+            postVignetteAllData(localStorage.getItem("selectedOfferId"), "rate");
         } else {
-          postVignetteAllData(localStorage.getItem("selectedOfferId"), "card");
+            postVignetteAllData(localStorage.getItem("selectedOfferId"), "card");
         }
         // document.getElementById("modal").style.display = 'none';
-      });
-    
-      document.getElementById("paymentButtonCard").addEventListener('click', function (event) {
+    });
+
+    document.getElementById("paymentButtonCard").addEventListener('click', function (event) {
         // if (hasClass(document.getElementById("mobilpaySelect"), "w--current")) {
         //   console.log("CARD!");
         //   postVignetteAllData(localStorage.getItem("selectedOfferId"), "card");
         // }
         if (hasClass(document.getElementById("tbiSelect"), "w--current")) {
-          postVignetteAllData(localStorage.getItem("selectedOfferId"), "rate");
+            postVignetteAllData(localStorage.getItem("selectedOfferId"), "rate");
         } else {
-          postVignetteAllData(localStorage.getItem("selectedOfferId"), "card");
+            postVignetteAllData(localStorage.getItem("selectedOfferId"), "card");
         }
         // document.getElementById("modal").style.display = 'none';
-      });
+    });
 
 }
 
