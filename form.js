@@ -190,6 +190,17 @@ request_cities.onload = function () {
   }
 };
 
+function setDisabledAlege(){
+  removeSelectOptionsExceptAlege('area_id');
+  removeSelectOptionsExceptAlege('city_id');
+  removeSelectOptionsExceptAlege('make');
+  removeSelectOptionsExceptAlege('model');
+  removeSelectOptionsExceptAlege('year');
+  // removeSelectOptionsExceptAlege('driving_license_year');
+
+  removeSelectOptionsExceptAlege('category');
+}
+
 // vehicles reg type calls
 request_vehicles_registration_type.onload = function () {
   // Begin accessing JSON data here
@@ -585,6 +596,7 @@ function goBackToFirstPage(event) {
 window.onload = function () {
 
   initToast();
+  setDisabledAlege();
   const form = document.getElementById('form-details');
   form.addEventListener('submit', handleSubmit);
 
