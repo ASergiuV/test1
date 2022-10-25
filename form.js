@@ -12,6 +12,8 @@ var areas = [];
 const errorColor = "hsl(350 100% 13.5%)";
 const errorBg = "hsl(350 100% 66.5%)";
 
+setDisabledAlege();
+
 function prepare_request(path) {
   var request = new XMLHttpRequest();
   request.open('GET', `${base_url}${path}`, true);
@@ -648,7 +650,6 @@ function goBackToFirstPage(event) {
 window.onload = function () {
 
   initToast();
-  setDisabledAlege();
 
   const form = document.getElementById('form-details');
   form.addEventListener('submit', handleSubmit);
