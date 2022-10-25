@@ -571,7 +571,7 @@ function goBackToFirstPage(event) {
   addClass(step1alt, classToChange);
 
   pas.innerHTML = "Pasul 1";
-  pasAlt.innerHTML = "Pasul 2";
+  pasAlt.innerHTML = "Pasul 1";
 
   $(window).scrollTop(0);
 }
