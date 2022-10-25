@@ -2,7 +2,7 @@ const base_url = 'https://app-dev.autodeal.ro/api/v1';
 
 const token = '100200|mFZqjzdO2Izu4e72eUSh0D0XctvkPQ2MMEDC78Hq';
 
-
+console.log("versiunea 1");
 // const base_url = 'https://app.autodeal.ro/api/v1';
 // const token = '113701|STygD85xaZB20zgdeOGtJXM5q2NX6bpwmIQ5JRxB';
 
