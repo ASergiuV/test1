@@ -20,6 +20,8 @@ console.log(slide2Height);
 //     );
 // }
 
+var removedCategoryRowsNoTimes = 0;
+
 const base_url = 'https://app-dev.autodeal.ro/api/v1';
 const base_url_mobilpay = 'https://app-dev.autodeal.ro';
 const token = '100200|mFZqjzdO2Izu4e72eUSh0D0XctvkPQ2MMEDC78Hq';
@@ -42,6 +44,30 @@ const images = {
     "B-Mf 0,0t<MTMA<=3,5t": "https://uploads-ssl.webflow.com/60b35cb1a44c2d844c8e31f9/6332e586ea937c33d185a284_delivery-truck%201.png"
 };
 
+function removeRadiochildrenOnce(parentId) {
+    if (removedCategoryRowsNoTimes >= 1) {
+        return;
+    }
+    const parent = document.getElementById(parentId);
+    // var counter = 0;
+    console.log(parent);
+
+    // parent.innerHTML = "";
+
+    for (const row of [...parent.children]) {
+        console.log(row);
+
+        if (row.innerHTML.includes("radio-button-label-2")) {//testRow.textContent === "rov-row "
+            parent.removeChild(row);
+        }
+    }
+
+    if (parentId === 'category-table') {
+        removedCategoryRowsNoTimes += 1;
+    }
+}
+
+
 function getVignetteCategories() {
     var request = new XMLHttpRequest();
     request.open('GET', `${base_url}/vignette-categories`, false);
@@ -51,6 +77,7 @@ function getVignetteCategories() {
 
         if (request.status >= 200 && request.status < 400) {
             categories = data.data;
+            removeRadiochildrenOnce('category-table');
             addCategoriesRow();
         } else {
             // generateToast({
@@ -91,17 +118,17 @@ function getVignetteCategoryPrices(categoryId) {
 function addCategoriesRow() {
     const parent = document.getElementById('category-table');
     // var counter = 0;
-    console.log(parent);
+    // console.log(parent);
 
-    // parent.innerHTML = "";
+    // // parent.innerHTML = "";
 
-    for (const row of [...parent.children]) {
-        console.log(row);
+    // for (const row of [...parent.children]) {
+    //     console.log(row);
 
-        if (row.innerHTML.includes("radio-button-label-2")) {//testRow.textContent === "rov-row "
-            parent.removeChild(row);
-        }
-    }
+    //     if (row.innerHTML.includes("radio-button-label-2")) {//testRow.textContent === "rov-row "
+    //         parent.removeChild(row);
+    //     }
+    // }
 
     var title = document.createElement('div');
     title.setAttribute('data-ix', "show-content-onslide");
@@ -221,7 +248,7 @@ function addPrices() {
 
     //slide 1 adaugare buton in lista la nivel cu row, trebuie adaugat si pe a doua 
 
-    parent.removeChild(parent.querySelector('.w-clearfix'));
+    // parent.removeChild(parent.querySelector('.w-clearfix'));
     //if innerhtml contains radio
 
     // var title = document.createElement('div');
@@ -351,32 +378,32 @@ function addPrices() {
 //     });
 // }
 
-// let toastContainer;
+let toastContainer;
 
-// function generateToast({
-//     message,
-//     background = '#00214d',
-//     color = '#fffffe',
-//     length = '3000ms',
-// }) {
-//     toastContainer.insertAdjacentHTML('beforeend', `<p class="toast" 
-//     style="background-color: ${background};
-//     color: ${color};
-//     animation-duration: ${length}">
-//     ${message}
-//   </p>`)
-//     const toast = toastContainer.lastElementChild;
-//     toast.addEventListener('animationend', () => toast.remove())
-// }
+function generateToast({
+    message,
+    background = '#00214d',
+    color = '#fffffe',
+    length = '3000ms',
+}) {
+    toastContainer.insertAdjacentHTML('beforeend', `<p class="toast" 
+    style="background-color: ${background};
+    color: ${color};
+    animation-duration: ${length}">
+    ${message}
+  </p>`)
+    const toast = toastContainer.lastElementChild;
+    toast.addEventListener('animationend', () => toast.remove())
+}
 
-// function initToast() {
-//     document.body.insertAdjacentHTML('afterbegin', `<div class="toast-container"></div>
-//   <style>
-//   .toast-container{position:fixed;z-index:10000;top:8rem;right:1.5rem;display:grid;justify-items:end;gap:.5rem}.toast{line-height:1;padding:.5em 1em;animation:toastIt 7000ms cubic-bezier(.785,.135,.15,.86) forwards;border-radius:4px;font-size:12px;font-weight:400;background:hsl(0,0%,91.8%)!important}@keyframes toastIt{0%,100%{transform:translateY(-150%);opacity:0}10%,90%{transform:translateY(0);opacity:1}}@media screen and (max-width:991px){.toast-container{justify-items:center;background:#fff;width:100%}.toast-container .toast{margin-top:1em}}
-//   </style>
-//   `);
-//     toastContainer = document.querySelector('.toast-container');
-// }
+function initToast() {
+    document.body.insertAdjacentHTML('afterbegin', `<div class="toast-container"></div>
+  <style>
+  .toast-container{position:fixed;z-index:10000;top:8rem;right:1.5rem;display:grid;justify-items:end;gap:.5rem}.toast{line-height:1;padding:.5em 1em;animation:toastIt 7000ms cubic-bezier(.785,.135,.15,.86) forwards;border-radius:4px;font-size:12px;font-weight:400;background:hsl(0,0%,91.8%)!important}@keyframes toastIt{0%,100%{transform:translateY(-150%);opacity:0}10%,90%{transform:translateY(0);opacity:1}}@media screen and (max-width:991px){.toast-container{justify-items:center;background:#fff;width:100%}.toast-container .toast{margin-top:1em}}
+  </style>
+  `);
+    toastContainer = document.querySelector('.toast-container');
+}
 
 
 // catch form response to object
@@ -533,7 +560,7 @@ function fadeOut(element) {
     }, 500 + 20);
 }
 
-function postVignetteAllData(quotationOfferId, type) {
+function postVignetteAllData(type) {
     var request = new XMLHttpRequest();
     request.open('POST', `${base_url}/vignette-policies/all-data?${localStorage.getItem("queryString")}`, true);
     request.setRequestHeader('Authorization', `Bearer ${token}`);
@@ -541,9 +568,9 @@ function postVignetteAllData(quotationOfferId, type) {
     request.onload = function () {
         var data = JSON.parse(this.response);
 
-        // console.log("postVignetteAllData");
+        console.log("postVignetteAllData");
 
-        // console.log(data);
+        console.log(data);
 
         if (request.status >= 200 && request.status < 400) {
             if (type === "card") {
@@ -573,9 +600,9 @@ function postMobilpay(orderId) {
     request.onload = function () {
         var data = JSON.parse(this.response);
 
-        // console.log("postMobilpay");
+        console.log("postMobilpay");
 
-        // console.log(data);
+        console.log(data);
 
         if (request.status >= 200 && request.status < 400) {
             getMobilpay(data.data.token);
@@ -633,7 +660,7 @@ function getTbi(tokn) {
 
 window.onload = function () {
 
-    // initToast();
+    initToast();
 
     $(".next.roviniete").css('top', "-" + slide1Height + "px");
 
