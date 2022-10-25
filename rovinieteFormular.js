@@ -1,6 +1,6 @@
 var slide1Height = $('#step-slide1 .collaborate-form-step').height();
 var slide2Height = $('#step-slide2 .collaborate-form-step').height();
-console.log("versiunea 10");
+console.log("versiunea 11");
 
 console.log(slide1Height);
 console.log(slide2Height);
@@ -615,7 +615,7 @@ function fadeOut(element) {
 
 function postVignetteAllData(type) {
     var request = new XMLHttpRequest();
-    const qs = localStorage.getItem('queryString2');
+    const qs = localStorage.getItem("querystring2");
     console.log(qs);
 
     request.open('POST', `${base_url}/vignette-policies/all-data?${qs}`, true);
