@@ -1,6 +1,6 @@
 var slide1Height = $('#step-slide1 .collaborate-form-step').height();
 var slide2Height = $('#step-slide2 .collaborate-form-step').height();
-console.log("versiunea 2");
+console.log("versiunea 4");
 
 console.log(slide1Height);
 console.log(slide2Height);
@@ -379,9 +379,9 @@ function addPrices() {
 
         // counter = counter + 1;
     }
-    const start_date = document.getElementById('dateDiv');
+    // const start_date = document.getElementById('dateDiv');
 
-    parent.insertBefore(row, start_date);
+    parent.appendChild(row);
 
     // parent.innerHTML += '<div class="input-group input-date"><div class="input-field-wrap"><label for="Date-2" class="field-label-3">Vreau RCA valabil de la data</label><div class="field-wrap"><input type="hidden" class="date inner-page-input startdate w-input flatpickr-input" maxlength="256" name="start_date" data-name="start_date" placeholder="Date Picker Element" id="start_date" required="" value="21.10.2022"><input class="date inner-page-input startdate w-input form-control input" placeholder="Date Picker Element" required="" type="text"><img id="btnOpen" width="16" loading="lazy" src="https://uploads-ssl.webflow.com/60b35cb1a44c2d844c8e31f9/6310854cba34bd3b698d7320_calendar.svg" alt="" class="field-icon"></div></div></div>';
     // const start_date = document.getElementById('start_date');
