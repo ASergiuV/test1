@@ -650,16 +650,15 @@ window.onload = function () {
   prev.addEventListener('click', goBackToFirstPage);
 
   const identity = document.getElementById('identity');
-  // identity.addEventListener('focusout', (e) => {
-  //   if (!validateCNP(e.target.value)) {
-  //     generateToast({
-  //       message: "CNP-ul nu este valid.",
-  //       background: errorBg,
-  //       color: errorColor,
-  //     });
-  //   }
-
-  // })
+  identity.addEventListener('focusout', (e) => {
+    if (!validateCNP(e.target.value)) {
+      generateToast({
+        message: "CNP-ul nu este valid.",
+        background: errorBg,
+        color: errorColor,
+      });
+    }
+  })
 
   document.addEventListener("DOMContentLoaded", function () {
     var elements = document.getElementsByClassName("step1");
