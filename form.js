@@ -191,7 +191,7 @@ request_cities.onload = function () {
 };
 
 function setDisabledAlege(){
-  removeSelectOptionsExceptAlege('area_id');
+  // removeSelectOptionsExceptAlege('area_id');
   removeSelectOptionsExceptAlege('city_id');
   removeSelectOptionsExceptAlege('make');
   removeSelectOptionsExceptAlege('model');
@@ -366,17 +366,18 @@ function removeSuccess(seconds = 0) {
 
 // catch form response to object
 function handleSubmit(event) {
-  event.preventDefault();
+  // event.preventDefault();
 
   if (!validateStep('step1')) {
-    // event.preventDefault();
+    event.preventDefault();
     emptyError();
     document.getElementById('prevButton').click();
+    $(window).scrollTop(0);
     return false;
   }
 
   if (!validateStep('step2')) {
-    // event.preventDefault();
+    event.preventDefault();
     emptyError();
     removeSuccess();
     removeSuccess(7);
@@ -648,6 +649,7 @@ window.onload = function () {
 
   initToast();
   setDisabledAlege();
+
   const form = document.getElementById('form-details');
   form.addEventListener('submit', handleSubmit);
 
