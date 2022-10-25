@@ -356,6 +356,11 @@ function removeSuccess(seconds = 0) {
     if (container == null) return; // abort if element isn't available
 
     container.style.display = 'none';
+
+    container = document.getElementById('form-details');
+    container.style.display = 'block';
+
+
   }, seconds * 1000);
 }
 
