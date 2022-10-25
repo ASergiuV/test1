@@ -2,7 +2,7 @@ const base_url = 'https://app-dev.autodeal.ro/api/v1';
 
 const token = '100200|mFZqjzdO2Izu4e72eUSh0D0XctvkPQ2MMEDC78Hq';
 
-console.log("versiunea 1");
+console.log("versiunea 2");
 // const base_url = 'https://app.autodeal.ro/api/v1';
 // const token = '113701|STygD85xaZB20zgdeOGtJXM5q2NX6bpwmIQ5JRxB';
 
@@ -269,29 +269,49 @@ request_vehicles_using_type.send();
 request_vehicles_categs.send();
 
 
-function validateCNP(value) {
-  var re = /^\d{1}\d{2}(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01])(0[1-9]|[1-4]\d| 5[0-2]|99)\d{4}$/,
-    bigSum = 0,
-    rest = 0,
-    ctrlDigit = 0,
-    control = '279146358279',
-    i = 0;
-  if (re.test(value)) {
-    for (i = 0; i < 12; i++) {
-      bigSum += value[i] * control[i];
-    }
-    ctrlDigit = bigSum % 11;
-    if (ctrlDigit === 10) {
-      ctrlDigit = 1;
-    }
+function validateCNP(p_cnp) {
+  // var re = /^\d{1}\d{2}(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01])(0[1-9]|[1-4]\d| 5[0-2]|99)\d{4}$/,
+  //   bigSum = 0,
+  //   rest = 0,
+  //   ctrlDigit = 0,
+  //   control = '279146358279',
+  //   i = 0;
+  // if (re.test(value)) {
+  //   for (i = 0; i < 12; i++) {
+  //     bigSum += value[i] * control[i];
+  //   }
+  //   ctrlDigit = bigSum % 11;
+  //   if (ctrlDigit === 10) {
+  //     ctrlDigit = 1;
+  //   }
 
-    if (ctrlDigit !== parseInt(value[12], 10)) {
-      return false;
-    } else {
-      return true;
+  //   if (ctrlDigit !== parseInt(value[12], 10)) {
+  //     return false;
+  //   } else {
+  //     return true;
+  //   }
+  // }
+  // return false;
+
+  var i=0 , year=0 , hashResult=0 , cnp=[] , hashTable=[2,7,9,1,4,6,3,5,8,2,7,9];
+    if( p_cnp.length !== 13 ) { return false; }
+    for( i=0 ; i<13 ; i++ ) {
+        cnp[i] = parseInt( p_cnp.charAt(i) , 10 );
+        if( isNaN( cnp[i] ) ) { return false; }
+        if( i < 12 ) { hashResult = hashResult + ( cnp[i] * hashTable[i] ); }
     }
-  }
-  return false;
+    hashResult = hashResult % 11;
+    if( hashResult === 10 ) { hashResult = 1; }
+    year = (cnp[1]*10)+cnp[2];
+    switch( cnp[0] ) {
+        case 1  : case 2 : { year += 1900; } break;
+        case 3  : case 4 : { year += 1800; } break;
+        case 5  : case 6 : { year += 2000; } break;
+        case 7  : case 8 : case 9 : { year += 2000; if( year > ( parseInt( new Date().getYear() , 10 ) - 14 ) ) { year -= 100; } } break;
+        default : { return false; }
+    }
+    if( year < 1800 || year > 2099 ) { return false; }
+    return ( cnp[12] === hashResult );
 };
 
 function validateStep(step) {
