@@ -1,6 +1,6 @@
 var slide1Height = $('#step-slide1 .collaborate-form-step').height();
 var slide2Height = $('#step-slide2 .collaborate-form-step').height();
-console.log("versiunea 13");
+console.log("versiunea 14");
 
 console.log(slide1Height);
 console.log(slide2Height);
@@ -591,6 +591,15 @@ function goToNextStep(event) {
 
             break;
         case "Pasul 2":
+            if (document.getElementById('vin').value?.trim() === "") {
+                event.preventDefault();
+                generateToast({
+                  message: "Toate campurile trebuie completate",
+                  background: "hsl(350 100% 66.5%)",
+                  color: "hsl(350 100% 13.5%)",
+                });
+                return false;
+              }
             removeClass(step1, classToChange);
             removeClass(step2, classToChange);
             addClass(step3, classToChange);
