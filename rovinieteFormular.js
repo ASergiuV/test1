@@ -1,6 +1,6 @@
 var slide1Height = $('#step-slide1 .collaborate-form-step').height();
 var slide2Height = $('#step-slide2 .collaborate-form-step').height();
-console.log("versiunea 19");
+console.log("versiunea 20");
 
 console.log(slide1Height);
 console.log(slide2Height);
@@ -261,7 +261,7 @@ function removeSuccess(seconds = 0) {
   
       container.style.display = 'none';
   
-      form = document.getElementById('form-details');
+      form = document.getElementById('wf-form-rovinieta-detalii');
       form.style.display = 'block';
   
   
