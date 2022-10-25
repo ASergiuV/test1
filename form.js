@@ -357,8 +357,8 @@ function removeSuccess(seconds = 0) {
 
     container.style.display = 'none';
 
-    container = document.getElementById('form-details');
-    container.style.display = 'block';
+    form = document.getElementById('form-details');
+    form.style.display = 'block';
 
 
   }, seconds * 1000);
