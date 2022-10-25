@@ -1,10 +1,10 @@
-const base_url = 'https://app-dev.autodeal.ro/api/v1';
+// const base_url = 'https://app-dev.autodeal.ro/api/v1';
 
-const token = '100200|mFZqjzdO2Izu4e72eUSh0D0XctvkPQ2MMEDC78Hq';
+// const token = '100200|mFZqjzdO2Izu4e72eUSh0D0XctvkPQ2MMEDC78Hq';
 
-console.log("versiunea 7");
-// const base_url = 'https://app.autodeal.ro/api/v1';
-// const token = '113701|STygD85xaZB20zgdeOGtJXM5q2NX6bpwmIQ5JRxB';
+// console.log("versiunea 7");
+const base_url = 'https://app.autodeal.ro/api/v1';
+const token = '113701|STygD85xaZB20zgdeOGtJXM5q2NX6bpwmIQ5JRxB';
 
 var citites = [];
 var areas = [];
@@ -293,7 +293,7 @@ function validateCNP(value) {
   // }
   // return false;
   var p_cnp;
-  console.log("VALOARE:" + value); console.log("VALOARE typ:" + typeof value);
+  // console.log("VALOARE:" + value); console.log("VALOARE typ:" + typeof value);
 
   if (typeof value === 'string') {
     // p_cnp = value.toString();
@@ -328,13 +328,13 @@ function validateCNP(value) {
 function validateStep(step) {
 
   var steps = document.getElementsByClassName(step);
-  console.log(steps);
+  // console.log(steps);
 
   var valid = true, globalValid = true;
 
   for (let stepMap in steps) {
     valid = true;
-    console.log(stepMap);
+    // console.log(stepMap);
     // if (stepMap.innerHTML.isEmpty()) {
     //   console.log("innerHTML is empty");
     //   valid = false;
@@ -345,17 +345,17 @@ function validateStep(step) {
     // }
 
     if (steps[stepMap].value?.trim() === "") {
-      console.log("value is empty" + steps[stepMap]);
+      // console.log("value is empty" + steps[stepMap]);
       valid = false;
     }
 
     if (steps[stepMap].id == 'identity' && !validateCNP(steps[stepMap].value)) {
-      console.log("cnp is invalid");
+      // console.log("cnp is invalid");
       valid = false;
     }
 
     if (steps[stepMap].value?.trim() === 'Alege') {
-      console.log("value is 'Alege'" + steps[stepMap]);
+      // console.log("value is 'Alege'" + steps[stepMap]);
       valid = false;
     }
 
@@ -365,7 +365,7 @@ function validateStep(step) {
     const selectedOptions = steps[stepMap].selectedOptions;
 
     if (selectedOptions && selectedOptions[selectedOptions.length - 1]?.outerText?.trim() === 'Alege') {
-      console.log("value is 'Alege'" + steps[stepMap]);
+      // console.log("value is 'Alege'" + steps[stepMap]);
       valid = false;
     }
 
@@ -599,10 +599,10 @@ function loadCitiesBasedOnArea(event) {
   // console.log(cities);
 
   const areaObject = areas.filter(function (area) { return area.id == event.target.value; });
-  console.log(areaObject);
+  // console.log(areaObject);
   selectedCities = cities.filter(function (city) { return city.area_code === areaObject[0].code; });
 
-  console.log(selectedCities);
+  // console.log(selectedCities);
   removeSelectOptionsExceptAlege('city_id');
   //need to filter data
   set_data_to_dropdown(selectedCities, 'city_id', 'id');
