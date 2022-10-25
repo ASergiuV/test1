@@ -1,6 +1,6 @@
 var slide1Height = $('#step-slide1 .collaborate-form-step').height();
 var slide2Height = $('#step-slide2 .collaborate-form-step').height();
-console.log("versiunea 0");
+console.log("versiunea 1");
 
 console.log(slide1Height);
 console.log(slide2Height);
@@ -443,7 +443,7 @@ function handleSubmit(event) {
 
     const data = new FormData(event.target);
 
-    data.append("category_id", category);
+    // data.append("category_id", category);
     data.append("availability", availability);
     data.append("registration_number", license);
 
