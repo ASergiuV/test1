@@ -1,6 +1,6 @@
 var slide1Height = $('#step-slide1 .collaborate-form-step').height();
 var slide2Height = $('#step-slide2 .collaborate-form-step').height();
-console.log("versiunea 14");
+console.log("versiunea 15");
 
 console.log(slide1Height);
 console.log(slide2Height);
@@ -466,9 +466,9 @@ function handleSubmit(event) {
         console.log(qs)
 
         if (hasClass(document.getElementById("tbiSelect"), "w--current")) {
-            postVignetteAllData("rate",qs);
+            postVignetteAllData("rate", qs);
         } else {
-            postVignetteAllData("card",qs);
+            postVignetteAllData("card", qs);
         }
         // document.getElementById("modal").style.display = 'none';
     });
@@ -480,9 +480,9 @@ function handleSubmit(event) {
         // }
         console.log(qs)
         if (hasClass(document.getElementById("tbiSelect"), "w--current")) {
-            postVignetteAllData("rate",qs);
+            postVignetteAllData("rate", qs);
         } else {
-            postVignetteAllData("card",qs);
+            postVignetteAllData("card", qs);
         }
         // document.getElementById("modal").style.display = 'none';
     });
@@ -594,12 +594,13 @@ function goToNextStep(event) {
             if (document.getElementById('vin').value?.trim() === "") {
                 event.preventDefault();
                 generateToast({
-                  message: "Toate campurile trebuie completate",
-                  background: "hsl(350 100% 66.5%)",
-                  color: "hsl(350 100% 13.5%)",
+                    message: "Toate campurile trebuie completate",
+                    background: "hsl(350 100% 66.5%)",
+                    color: "hsl(350 100% 13.5%)",
                 });
+                document.getElementById('prevButton').click();
                 return false;
-              }
+            }
             removeClass(step1, classToChange);
             removeClass(step2, classToChange);
             addClass(step3, classToChange);
@@ -783,7 +784,7 @@ window.onload = function () {
     document.getElementById("modal").style.transition = "opacity 0.5s ease-in-out;";
 
 
-    
+
 
 }
 
