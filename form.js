@@ -9,6 +9,8 @@ const token = '100200|mFZqjzdO2Izu4e72eUSh0D0XctvkPQ2MMEDC78Hq';
 var citites = [];
 var areas = [];
 
+const errorColor = "hsl(350 100% 13.5%)";
+const errorBg = "hsl(350 100% 66.5%)";
 
 function prepare_request(path) {
   var request = new XMLHttpRequest();
@@ -253,23 +255,6 @@ request_vehicles_using_type.send();
 request_vehicles_categs.send();
 
 
-
-function fetch_offers(path, query_params) {
-
-  fetch(`${base_url}${path}?${query_params}`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`,
-    }
-  })
-    .then((response) => localStorage.setItem('offersResponse', response.json().toString()))
-    .catch((error) => {
-      console.error('Error:', error);
-    });
-
-}
-
 function validateCNP(value) {
   var re = /^\d{1}\d{2}(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01])(0[1-9]|[1-4]\d| 5[0-2]|99)\d{4}$/,
     bigSum = 0,
@@ -295,15 +280,12 @@ function validateCNP(value) {
   return false;
 };
 
-const emailRegExp =
-  /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-
 function validateStep(step) {
 
   var steps = document.getElementsByClassName(step);
   console.log(steps);
 
-  var valid = true;
+  var valid = true, globalValid = true;
 
   for (let stepMap in steps) {
     valid = true;
@@ -327,41 +309,58 @@ function validateStep(step) {
       valid = false;
     }
 
+    console.log(steps[stepMap].selectedOptions);
+
+    if (steps[stepMap].selectedOptions[0]?.outerText?.trim() === 'Alege') {
+      console.log("value is 'Alege'");
+      valid = false;
+    }
+
     if (!valid) {
+      globalValid = false;
       $(steps[stepMap]).focus();
       return false;
     }
 
   }
 
-  return valid;
+  return globalValid;
 }
 
+function emptyError() {
+  generateToast({
+    message: "Toate campurile trebuie completate corect",
+    background: errorBg,
+    color: errorColor,
+  });
+}
+
+function removeSuccess(seconds=0){
+  setTimeout(function(){
+    container = document.getElementById('successMessageSubmit');
+    if (container == null) return; // abort if element isn't available
+
+    container.style.display = 'none';
+}, seconds * 1000);
+}
 
 // catch form response to object
 function handleSubmit(event) {
-  // event.preventDefault();
+  event.preventDefault();
 
   if (!validateStep('step1')) {
-    event.preventDefault();
-    generateToast({
-      message: "Toate campurile trebuie completate",
-      background: "hsl(350 100% 66.5%)",
-      color: "hsl(350 100% 13.5%)",
-    });
+    // event.preventDefault();
+    emptyError();
     document.getElementById('prevButton').click();
-    return;
+    return false;
   }
 
   if (!validateStep('step2')) {
-    event.preventDefault();
-    generateToast({
-      message: "Toate campurile trebuie completate",
-      background: "hsl(350 100% 66.5%)",
-      color: "hsl(350 100% 13.5%)",
-    });
+    // event.preventDefault();
+    emptyError();
+    removeSuccess();
     $(window).scrollTop(0);
-    return;
+    return false;
   }
 
   const data = new FormData(event.target);
@@ -633,16 +632,16 @@ window.onload = function () {
   prev.addEventListener('click', goBackToFirstPage);
 
   const identity = document.getElementById('identity');
-  identity.addEventListener('focusout', (e) => {
-    if (!validateCNP(e.target.value)) {
-      generateToast({
-        message: "CNP-ul nu este valid.",
-        background: "hsl(350 100% 66.5%)",
-        color: "hsl(350 100% 13.5%)",
-      });
-    }
+  // identity.addEventListener('focusout', (e) => {
+  //   if (!validateCNP(e.target.value)) {
+  //     generateToast({
+  //       message: "CNP-ul nu este valid.",
+  //       background: errorBg,
+  //       color: errorColor,
+  //     });
+  //   }
 
-  })
+  // })
 
   document.addEventListener("DOMContentLoaded", function () {
     var elements = document.getElementsByClassName("step1");
