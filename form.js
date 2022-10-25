@@ -311,7 +311,7 @@ function validateStep(step) {
 
     console.log(steps[stepMap]);
 
-    console.log("selected options: " + steps[stepMap].selectedOptions);
+    console.log("selected options: " + steps[stepMap].selectedOptions.JSON);
     const selectedOptions = steps[stepMap].selectedOptions;
 
     if (selectedOptions && selectedOptions[selectedOptions.length - 1]?.outerText?.trim() === 'Alege') {
@@ -480,6 +480,7 @@ function removeSelectOptionsExceptAlege(elementId) {
 
   const option = document.createElement('option');
   option.setAttribute('value', 'Alege');
+  option.disabled = true;
   option.textContent = 'Alege';
   selectElement.appendChild(option);
 }
