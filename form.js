@@ -2,7 +2,7 @@ const base_url = 'https://app-dev.autodeal.ro/api/v1';
 
 const token = '100200|mFZqjzdO2Izu4e72eUSh0D0XctvkPQ2MMEDC78Hq';
 
-console.log("versiunea 6");
+console.log("versiunea 7");
 // const base_url = 'https://app.autodeal.ro/api/v1';
 // const token = '113701|STygD85xaZB20zgdeOGtJXM5q2NX6bpwmIQ5JRxB';
 
@@ -339,12 +339,17 @@ function validateStep(step) {
     //   console.log("innerHTML is empty");
     //   valid = false;
     // }
+
+    // if(typeof steps[stepMap] ==="undefined"){
+    //   continue;
+    // }
+
     if (steps[stepMap].value?.trim() === "") {
       console.log("value is empty" + steps[stepMap]);
       valid = false;
     }
 
-    if (steps[stepMap].id == 'identity' && !validateCNP(stepMap.value)) {
+    if (steps[stepMap].id == 'identity' && !validateCNP(steps[stepMap].value)) {
       console.log("cnp is invalid");
       valid = false;
     }
