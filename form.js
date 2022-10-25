@@ -313,7 +313,7 @@ function validateStep(step) {
 
     console.log(steps[stepMap].selectedOptions);
 
-    if (steps[stepMap].selectedOptions[0]?.outerText?.trim() === 'Alege') {
+    if (steps[stepMap].selectedOptions?.at(-1)?.outerText?.trim() === 'Alege') {
       console.log("value is 'Alege'" + steps[stepMap]);
       valid = false;
     }
