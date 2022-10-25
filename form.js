@@ -311,7 +311,7 @@ function validateStep(step) {
 
     console.log(steps[stepMap]);
 
-    console.log("selected options: " + steps[stepMap].selectedOptions.JSON);
+    console.log("selected options: " + steps[stepMap].selectedOptions.toString());
     const selectedOptions = steps[stepMap].selectedOptions;
 
     if (selectedOptions && selectedOptions[selectedOptions.length - 1]?.outerText?.trim() === 'Alege') {
