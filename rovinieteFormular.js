@@ -1,6 +1,6 @@
 var slide1Height = $('#step-slide1 .collaborate-form-step').height();
 var slide2Height = $('#step-slide2 .collaborate-form-step').height();
-console.log("versiunea 15");
+console.log("versiunea 16");
 
 console.log(slide1Height);
 console.log(slide2Height);
@@ -256,11 +256,11 @@ function addCategoriesRow() {
 
 
 function addPrices() {
-    const parent = document.getElementById('price-table');
+    const parent = document.getElementById('rovFields');//price-table
     // var counter = 0;
     // console.log(parent);
 
-    // parent.innerHTML = "";
+    parent.innerHTML = "";
     // for (let element of parent.querySelector('.w-clearfix')) {
     //     if(element.innerHTML.includes("radio") || element.innerHTML.includes("Radio")){
     //         parent.removeChild(element);
@@ -782,9 +782,5 @@ window.onload = function () {
     });
 
     document.getElementById("modal").style.transition = "opacity 0.5s ease-in-out;";
-
-
-
-
 }
 
