@@ -1,7 +1,6 @@
 var slide1Height = $('#step-slide1 .collaborate-form-step').height();
 var slide2Height = $('#step-slide2 .collaborate-form-step').height();
-console.log("VERSIUNEA 2");
-Ç
+
 console.log(slide1Height);
 console.log(slide2Height);
 
@@ -818,3 +817,6 @@ window.onload = function () {
 
     // document.getElementById("modal").style.transition = "opacity 0.5s ease-in-out;";
 }
+
+console.log("VERSIUNEA 3");
+
