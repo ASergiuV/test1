@@ -1,7 +1,7 @@
 var slide1Height = $('#step-slide1 .collaborate-form-step').height();
 var slide2Height = $('#step-slide2 .collaborate-form-step').height();
 console.log("VERSIUNEA 2");
-
+Ç
 console.log(slide1Height);
 console.log(slide2Height);
 
@@ -535,7 +535,7 @@ function goToPreviousStep() {
     const step2alt = document.getElementById('step2alt');
     const step3alt = document.getElementById('step3alt');
 
-    const nextWrapper = document.getElementsById('nextBtnWrapperRov');
+    const nextWrapper = document.getElementById('nextBtnWrapperRov');
 
 
     switch (pas.innerHTML) {
@@ -573,7 +573,7 @@ function goToPreviousStep() {
             // $(".next.roviniete").css('top', "-" + slide2Height + "px");
             $(".next.roviniete").css('top', "505px");
 
-            if(!hasClass(nextWrapper, 'slider2')){
+            if (!hasClass(nextWrapper, 'slider2')) {
                 addClass(nextWrapper, 'slider2');
             }
             break;
@@ -768,7 +768,7 @@ window.onload = function () {
 
     initToast();
 
-    addClass(document.getElementsById('nextBtnWrapperRov'), 'slider1');
+    addClass(document.getElementById('nextBtnWrapperRov'), 'slider1');
 
     $(".next.roviniete").css('top', "300px");
 
