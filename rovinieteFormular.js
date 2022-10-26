@@ -1,6 +1,6 @@
 var slide1Height = $('#step-slide1 .collaborate-form-step').height();
 var slide2Height = $('#step-slide2 .collaborate-form-step').height();
-console.log("VERSIUNEA 1");
+console.log("VERSIUNEA 2");
 
 console.log(slide1Height);
 console.log(slide2Height);
@@ -594,7 +594,7 @@ function goToNextStep(event) {
     const step2alt = document.getElementById('step2alt');
     const step3alt = document.getElementById('step3alt');
 
-    const nextWrapper = document.getElementsById('nextBtnWrapperRov');
+    const nextWrapper = document.getElementById('nextBtnWrapperRov');
 
 
     switch (pas.innerHTML) {
