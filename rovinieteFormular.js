@@ -575,7 +575,7 @@ function goToPreviousStep() {
             if (!hasClass(nextWrapper, 'slider2')) {
                 addClass(nextWrapper, 'slider2');
             }
-            break;
+            // break;
 
             if (!hasClass(prevWrapper, 'slider2')) {
                 addClass(prevWrapper, 'slider2');
@@ -821,4 +821,4 @@ window.onload = function () {
     // document.getElementById("modal").style.transition = "opacity 0.5s ease-in-out;";
 }
 
-console.log("VERSIUNEA 5");
+console.log("VERSIUNEA 6");
