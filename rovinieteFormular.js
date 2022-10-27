@@ -586,9 +586,10 @@ function goToPreviousStep() {
             if (!hasClass(prevWrapper, 'slider2')) {
                 addClass(prevWrapper, 'slider2');
                 removeClass(prevWrapper, 'slider1');
-                removeClass(prevWrapper, 'slider3');
 
             }
+            
+            removeClass(prevWrapper, 'slider3');
 
             $(window).scrollTop(0);
 
@@ -635,7 +636,7 @@ function goToNextStep(event) {
             addClass(nextWrapper, 'slider2');
             removeClass(prevWrapper, 'slider1');
             addClass(prevWrapper, 'slider2');
-            
+
             document.getElementById('nextButton').innerHTML = "Continua la selectarea rovinietei";
 
             $(window).scrollTop(0);
@@ -846,4 +847,4 @@ window.onload = function () {
     // document.getElementById("modal").style.transition = "opacity 0.5s ease-in-out;";
 }
 
-console.log("VERSIUNEA 10");
+console.log("VERSIUNEA 11");
