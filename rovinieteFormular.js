@@ -557,6 +557,8 @@ function goToPreviousStep() {
             addClass(nextWrapper, 'slider1');
             removeClass(prevWrapper, 'slider2');
             addClass(prevWrapper, 'slider1');
+            document.getElementById('nextButton').innerHTML = "Continua la selectarea rovinietei";
+
             $(window).scrollTop(0);
 
             break;
@@ -587,6 +589,7 @@ function goToPreviousStep() {
                 removeClass(prevWrapper, 'slider3');
 
             }
+
             $(window).scrollTop(0);
 
             break;
@@ -632,8 +635,11 @@ function goToNextStep(event) {
             addClass(nextWrapper, 'slider2');
             removeClass(prevWrapper, 'slider1');
             addClass(prevWrapper, 'slider2');
+            
+            document.getElementById('nextButton').innerHTML = "Continua la selectarea rovinietei";
 
             $(window).scrollTop(0);
+
 
             break;
         case "Pasul 2":
@@ -791,6 +797,7 @@ window.onload = function () {
 
     addClass(document.getElementById('nextBtnWrapperRov'), 'slider1');
     addClass(document.getElementById('prevBtnWrapperRov'), 'slider1');
+    document.getElementById('nextButton').innerHTML = "Continua la selectarea rovinietei";
 
 
     getVignetteCategories();
@@ -839,4 +846,4 @@ window.onload = function () {
     // document.getElementById("modal").style.transition = "opacity 0.5s ease-in-out;";
 }
 
-console.log("VERSIUNEA 9");
+console.log("VERSIUNEA 10");
