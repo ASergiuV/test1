@@ -542,7 +542,7 @@ function goToPreviousStep() {
         case "Pasul 1":
             break;
         case "Pasul 2":
-            document.getElementById('nextButton').innerHTML = "Continua la selectarea rovinietei";
+            document.getElementById('nextButton').innerHTML = "Continuă la selectarea rovinietei";
 
             addClass(step1, classToChange);
             removeClass(step2, classToChange);
@@ -565,7 +565,7 @@ function goToPreviousStep() {
             break;
         case "Pasul 3":
             // getVignetteCategoryPrices(localStorage.getItem('selectedCategory'));
-            document.getElementById('nextButton').innerHTML = "Continua la detalii proprietar";
+            document.getElementById('nextButton').innerHTML = "Continuă la detalii proprietar";
 
             removeClass(step1, classToChange);
             addClass(step2, classToChange);
@@ -621,7 +621,7 @@ function goToNextStep(event) {
         case "Pasul 1":
 
             getVignetteCategoryPrices(localStorage.getItem('selectedCategory'));
-            document.getElementById('nextButton').innerHTML = "Continua la detalii proprietar";
+            document.getElementById('nextButton').innerHTML = "Continuă la detalii proprietar";
 
             removeClass(step1, classToChange);
             addClass(step2, classToChange);
@@ -800,7 +800,7 @@ window.onload = function () {
 
     addClass(document.getElementById('nextBtnWrapperRov'), 'slider1');
     addClass(document.getElementById('prevBtnWrapperRov'), 'slider1');
-    document.getElementById('nextButton').innerHTML = "Continua la selectarea rovinietei";
+    document.getElementById('nextButton').innerHTML = "Continuă la selectarea rovinietei";
 
 
     getVignetteCategories();
@@ -849,4 +849,4 @@ window.onload = function () {
     // document.getElementById("modal").style.transition = "opacity 0.5s ease-in-out;";
 }
 
-console.log("VERSIUNEA 12");
+console.log("VERSIUNEA 14");
