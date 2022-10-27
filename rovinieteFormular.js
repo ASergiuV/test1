@@ -584,6 +584,7 @@ function goToPreviousStep() {
             if (!hasClass(prevWrapper, 'slider2')) {
                 addClass(prevWrapper, 'slider2');
                 removeClass(prevWrapper, 'slider1');
+                removeClass(prevWrapper, 'slider3');
 
             }
             $(window).scrollTop(0);
@@ -658,6 +659,10 @@ function goToNextStep(event) {
             pas.innerHTML = "Pasul 3";
             pasAlt.innerHTML = "Pasul 3";
             $(window).scrollTop(0);
+            removeClass(prevWrapper, 'slider1');
+            removeClass(prevWrapper, 'slider2');
+            addClass(prevWrapper, 'slider3');
+            
 
             break;
         case "Pasul 3":
@@ -834,4 +839,4 @@ window.onload = function () {
     // document.getElementById("modal").style.transition = "opacity 0.5s ease-in-out;";
 }
 
-console.log("VERSIUNEA 8");
+console.log("VERSIUNEA 9");
