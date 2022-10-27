@@ -542,6 +542,8 @@ function goToPreviousStep() {
         case "Pasul 1":
             break;
         case "Pasul 2":
+            document.getElementById('nextButton').innerHTML = "Continua la selectarea rovinietei";
+
             addClass(step1, classToChange);
             removeClass(step2, classToChange);
             removeClass(step3, classToChange);
@@ -557,13 +559,13 @@ function goToPreviousStep() {
             addClass(nextWrapper, 'slider1');
             removeClass(prevWrapper, 'slider2');
             addClass(prevWrapper, 'slider1');
-            document.getElementById('nextButton').innerHTML = "Continua la selectarea rovinietei";
 
             $(window).scrollTop(0);
 
             break;
         case "Pasul 3":
             // getVignetteCategoryPrices(localStorage.getItem('selectedCategory'));
+            document.getElementById('nextButton').innerHTML = "Continua la detalii proprietar";
 
             removeClass(step1, classToChange);
             addClass(step2, classToChange);
@@ -588,7 +590,7 @@ function goToPreviousStep() {
                 removeClass(prevWrapper, 'slider1');
 
             }
-            
+
             removeClass(prevWrapper, 'slider3');
 
             $(window).scrollTop(0);
@@ -619,6 +621,7 @@ function goToNextStep(event) {
         case "Pasul 1":
 
             getVignetteCategoryPrices(localStorage.getItem('selectedCategory'));
+            document.getElementById('nextButton').innerHTML = "Continua la detalii proprietar";
 
             removeClass(step1, classToChange);
             addClass(step2, classToChange);
@@ -637,7 +640,6 @@ function goToNextStep(event) {
             removeClass(prevWrapper, 'slider1');
             addClass(prevWrapper, 'slider2');
 
-            document.getElementById('nextButton').innerHTML = "Continua la selectarea rovinietei";
 
             $(window).scrollTop(0);
 
@@ -669,7 +671,7 @@ function goToNextStep(event) {
             removeClass(prevWrapper, 'slider1');
             removeClass(prevWrapper, 'slider2');
             addClass(prevWrapper, 'slider3');
-            
+
 
             break;
         case "Pasul 3":
@@ -847,4 +849,4 @@ window.onload = function () {
     // document.getElementById("modal").style.transition = "opacity 0.5s ease-in-out;";
 }
 
-console.log("VERSIUNEA 11");
+console.log("VERSIUNEA 12");
