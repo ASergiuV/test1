@@ -207,10 +207,21 @@ function setDisabledAlege() {
 request_vehicles_registration_type.onload = function () {
   // Begin accessing JSON data here
   var data = JSON.parse(this.response);
+
+  var dataArr = [];
+
+
   // console.log(data);
 
   if (request_vehicles_registration_type.status >= 200 && request_vehicles_registration_type.status < 400) {
-    set_data_to_dropdown(data.data, 'vehicle_registration', 'name');
+    //DELETE foreach and change to data.data in set_data_to_dropdown, if limitation to "inmatriculat" is removed
+    data.data.forEach(element => {
+      if (element.name === "inmatriculat") {
+        dataArr.push(element);
+      }
+    });
+
+    set_data_to_dropdown(dataArr, 'vehicle_registration', 'name');
   } else {
     console.log('error');
   }
@@ -420,7 +431,9 @@ function handleSubmit(event) {
     event.preventDefault();
     emptyError();
     removeSuccess();
-    removeSuccess(7);
+    removeSuccess(1);
+
+    removeSuccess(5);
 
     $(window).scrollTop(0);
     return false;
@@ -451,6 +464,8 @@ function handleSubmit(event) {
   //fetch_offers('/rca-quotations-web', queryString.toString());
 
   localStorage.setItem("querystring", queryString.toString());
+  removeSuccess();
+  removeSuccess(1);
 
   window.location.href = '/asigurare-rca-oferte-disponibile';
 }
